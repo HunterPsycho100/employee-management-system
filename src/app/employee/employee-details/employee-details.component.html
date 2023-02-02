@@ -1,0 +1,18 @@
+<h3>View Employee Details</h3>
+<div>
+  <button (click)="addAddress(id)" class="btn btn-info">Add Address</button>
+</div>
+
+<div>
+  <app-employee-info [id]="id" [employee]="employee"></app-employee-info>
+
+  <!-- loop -->
+  <div *ngFor="let address of employee.addresses; let i = index">
+    <h5>Address {{ i + 1 }}</h5>
+    <app-address-info
+      [id]="id"
+      [employee]="employee"
+      [address]="address"
+    ></app-address-info>
+  </div>
+</div>

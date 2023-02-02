@@ -1,0 +1,87 @@
+<div class="col-md-6 offset-md-3">
+  <h3>Add Address</h3>
+  <div>
+    <button (click)="back(id)" class="btn btn-info">Back</button>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <!-- for the address object -->
+    <div class="form-group">
+      <label> Address </label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        [(ngModel)]="address.address"
+        name="address"
+      />
+    </div>
+    <div class="form-group">
+      <label> City </label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        [(ngModel)]="address.city"
+        name="city"
+      />
+    </div>
+    <div class="form-group">
+      <label> State </label>
+      <input
+        type="text"
+        class="form-control"
+        id="usState"
+        [(ngModel)]="address.usState"
+        name="usState"
+      />
+    </div>
+    <div class="form-group">
+      <label> Country </label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        [(ngModel)]="address.country"
+        name="country"
+      />
+    </div>
+    <div class="form-group">
+      <label> Postal Code </label>
+      <input
+        type="text"
+        class="form-control"
+        id="postalCode"
+        [(ngModel)]="address.postalCode"
+        name="postalCode"
+      />
+    </div>
+    <!-- makea a drop down -->
+    <div class="form-group">
+      <label> Address Type </label>
+      <select
+        [(ngModel)]="address.addressType"
+        class="form-control"
+        id="addressType"
+        name="addressType"
+      >
+        <option *ngFor="let item of items" [value]="item.value">
+          {{ item.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- how to automatically send id without having to type it in -->
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="employeeId"
+        [(ngModel)]="address.employeeId"
+        name="employeeId"
+        [hidden]="hideInput"
+      />
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+</div>
