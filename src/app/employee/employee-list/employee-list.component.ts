@@ -10,6 +10,8 @@ import { EmployeeService } from '../../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   employees!: Employee[];
+  searchTerm: string;
+  searchResults: Employee[];
 
   constructor(
     private employeeService: EmployeeService,
@@ -23,6 +25,7 @@ export class EmployeeListComponent implements OnInit {
   private getEmployees() {
     this.employeeService.getEmployeesList().subscribe((data) => {
       this.employees = data;
+      this.searchResults = data;
     });
   }
 
@@ -38,6 +41,14 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.deleteEmployee(id).subscribe((data) => {
       console.log(data);
       this.getEmployees();
+    });
+  }
+
+  search() {
+    this.searchResults = this.employees.filter((item) => {
+      return [item.firstName, item.lastName, item.emailId].some((property) => {
+        return property.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
     });
   }
 }
